@@ -9,8 +9,10 @@
 
 void setup() {
   pinMode(PIN_BUZZER, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(PIN_BUTTON, INPUT);
   digitalWrite(PIN_BUZZER,LOW);
+  digitalWrite(LED_BUILTIN,HIGH);
 }
 
 void loop() {
