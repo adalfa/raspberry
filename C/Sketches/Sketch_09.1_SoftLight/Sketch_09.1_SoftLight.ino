@@ -13,7 +13,7 @@
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void initdbg() {
   Serial.begin(115200);
@@ -23,6 +23,8 @@ void initdbg() {
   digitalWrite(LED_BUILTIN,HIGH);
 }
 void setup() {
+  //TwoWire CustomI2C1(6, 7);
+ 
   initdbg();
   pinMode(PIN_LEDB, OUTPUT);
 
@@ -48,7 +50,7 @@ void setup() {
 void loop() {
   int adcVal = analogRead(PIN_ADC0); //read adc
   double voltage = adcVal / 1023.0 * 3.3;
-  //Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V");
+ Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V");
   analogWrite(PIN_LEDB, map(adcVal, 0, 1023, 0, 255));
   delay(10);
 }
