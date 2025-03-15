@@ -6,8 +6,8 @@
 **********************************************************************/
 #include <WiFi.h>
   
-const char *ssid_Router     = "********"; //Enter the router name
-const char *password_Router = "********"; //Enter the router password
+const char *ssid_Router     = "enel-WiFi_A9A40D11"; //Enter the router name
+const char *password_Router = ""; //Enter the router password
 
 void setup(){
   Serial.begin(115200);

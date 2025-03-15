@@ -36,11 +36,12 @@ void setup() {
 
 
   delay(2000);
-  
+  display.invertDisplay(false);
+  display.setRotation(10);
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
-  display.setCursor(0, 10);
+  display.setCursor(0, 0);
   // Display static text
   display.println("Hello, world!!!");
   display.display();
@@ -52,5 +53,11 @@ void loop() {
   double voltage = adcVal / 1023.0 * 3.3;
  Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V");
   analogWrite(PIN_LEDB, map(adcVal, 0, 1023, 0, 255));
-  delay(10);
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println(String(voltage) + "V");
+  display.display();
+  delay(100);
 }
