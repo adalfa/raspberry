@@ -8,7 +8,9 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define PIN_ADC0        26
+#define GPIO23          23
 #define PIN_LEDB         15
+#define RES           4095.0
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
@@ -20,6 +22,7 @@ void initdbg() {
   delay(1000);
   Serial.println("Raspberry Pi Pico initialization completed!");
   pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(GPIO23, LOW);
   digitalWrite(LED_BUILTIN,HIGH);
 }
 void setup() {
@@ -49,10 +52,11 @@ void setup() {
 }
 
 void loop() {
+  analogReadResolution(12);
   int adcVal = analogRead(PIN_ADC0); //read adc
-  double voltage = adcVal / 1023.0 * 3.3;
+  double voltage = adcVal / RES * 3.3;
  Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V");
-  analogWrite(PIN_LEDB, map(adcVal, 0, 1023, 0, 255));
+  analogWrite(PIN_LEDB, map(adcVal, 0, RES, 0, 255));
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
