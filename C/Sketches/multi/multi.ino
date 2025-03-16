@@ -8,9 +8,10 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define PIN_ADC0        26
+#define PIN_ADC1        27
 #define GPIO23          23
 #define PIN_LEDB         15
-#define RES           4095.0
+#define RES           1024.0
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
@@ -52,16 +53,23 @@ void setup() {
 }
 
 void loop() {
-  analogReadResolution(12);
-  int adcVal = analogRead(PIN_ADC0); //read adc
+  analogReadResolution(10);
+  int adcVal = analogRead(PIN_ADC0);
+  int adcValueTemp = analogRead(PIN_ADC1); 
+  double voltageT = (float)adcValueTemp / RES * 3.3;
+  double Rt = 10 * voltageT / (3.3 - voltageT);
+  double tempK = 1 / (1 / (273.15 + 25) + log(Rt / 10) / 3950.0); //calculate temperature (Kelvin)
+  double tempC = tempK - 273.15;  
   double voltage = adcVal / RES * 3.3;
- Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V");
+ Serial.println("ADC Value: " + String(adcVal) + " --- Voltage Value: " + String(voltage) + "V\t"+"VoltageT: " + String(voltageT) + "V"+"Temperature: " + String(tempC) + "C");
   analogWrite(PIN_LEDB, map(adcVal, 0, RES, 0, 255));
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
-  display.println(String(voltage) + "V");
+  display.println(String(voltage) + " V");
+  display.setCursor(0, 10);
+  display.println(String(tempC) + " C");
   display.display();
   delay(100);
 }
