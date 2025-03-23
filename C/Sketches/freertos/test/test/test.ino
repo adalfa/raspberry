@@ -1,8 +1,8 @@
 #include <FreeRTOS.h>
-#include "./FreeRTOSConfig.h"
+
 
 #include <task.h>
-//#define xPortSysTickHandler SysTickHandler
+//#define xPortSysTickHandler SysTick_Handler
 
 void vBlinkTask( void * pvParameters) {
 
@@ -16,7 +16,7 @@ void vBlinkTask( void * pvParameters) {
       digitalWrite(LED_BUILTIN, LOW);
     Serial.println("Low");
    vTaskDelay(pdMS_TO_TICKS(1000));
-   // for(long i=1;i<100000000;i++);
+  // for(long i=1;i<100000000;i++);
    }
 
 }
@@ -35,7 +35,7 @@ void setup ()
 pinMode(LED_BUILTIN, OUTPUT);
 xTaskCreate(vBlinkTask, "Blink Task", 128, NULL, 1, NULL);
 Serial.println("task Create");
-vTaskStartScheduler();
+//vTaskStartScheduler();
 
 }
 
