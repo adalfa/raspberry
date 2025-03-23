@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild-complete.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"picotoolBuild"
+		],
+		"name" : "picotoolBuild"
+	}
+}

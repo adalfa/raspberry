@@ -1,0 +1,14 @@
+# Target labels
+ picotoolBuild
+# Source files and their labels
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/CMakeFiles/picotoolBuild-complete.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/pioasmBuild"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/pioasmBuild.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/pioasmBuild-complete.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-build.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-configure.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-download.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-install.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-mkdir.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-patch.rule"
+		},
+		{
+			"file" : "/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/pioasmBuild-stamp/pioasmBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"pioasmBuild"
+		],
+		"name" : "pioasmBuild"
+	}
+}

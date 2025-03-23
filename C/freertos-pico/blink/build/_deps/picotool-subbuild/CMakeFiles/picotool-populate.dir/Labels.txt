@@ -1,0 +1,14 @@
+# Target labels
+ picotool-populate
+# Source files and their labels
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/CMakeFiles/picotool-populate
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/CMakeFiles/picotool-populate.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/CMakeFiles/picotool-populate-complete.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-build.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-configure.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-download.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-install.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-mkdir.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-patch.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-test.rule
+/home/andrea/Documents/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool-subbuild/picotool-populate-prefix/src/picotool-populate-stamp/picotool-populate-update.rule

@@ -1,0 +1,5 @@
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool/picotool
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool/picotoolTargets.cmake
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool/picotoolTargets-release.cmake
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool/picotoolConfig.cmake
+/home/andrea/doc/raspberry/Freenove_Basic_Starter_Kit_for_Raspberry_Pi_Pico-main/C/freertos-pico/blink/build/_deps/picotool/picotoolConfigVersion.cmake
