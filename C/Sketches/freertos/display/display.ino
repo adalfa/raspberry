@@ -6,12 +6,13 @@
 #include <Adafruit_SSD1306.h>
 #define PIN_ADC0        26
 #define PIN_ADC1        27
+#define PIN_ADC2        28
 #define GPIO23          23
 #define PIN_LEDB         15
 #define RES           1024.0
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
-
+#define ALPHA 0.75
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 QueueHandle_t dispQueue;
 struct message {
@@ -53,9 +54,31 @@ void vReadpot(void *pvParameters){
   vTaskDelay(pdMS_TO_TICKS(1000));
   }
 }
+
+void vReadPhoto(void *pvParameters){
+  for (;;){
+  struct message msgP;
+  int padvVal=analogRead(PIN_ADC2);
+
+   if (Serial.availableForWrite()>1)
+       Serial.println("lum:1 "+String(padvVal));
+
+  msgP.line=20;
+  msgP.val=padvVal;
+  msgP.unit=' '; 
+   if (xQueueSend(dispQueue,( void * ) &msgP,10)!= pdPASS){
+    Serial.println("send failed");
+  }      
+  vTaskDelay(pdMS_TO_TICKS(500));
+}
+}
+
 void vReadtemp(void *pvParameters){
 
   Serial.println("Temp");
+  float tempPrev=0.0;
+  
+  
  
   for (;;) {
   struct message msgT;
@@ -66,8 +89,9 @@ void vReadtemp(void *pvParameters){
   float voltageT = (float)adcValueTemp / RES * 3.3;
   float  Rt = 10 * voltageT / (3.3 - voltageT);
   float tempK = 1 / (1 / (273.15 + 25) + log(Rt / 10) / 3950.0); //calculate temperature (Kelvin)
-  float tempC = tempK - 273.15;
-
+  float tempCa = tempK - 273.15;
+  float tempC=ALPHA*tempCa+ (1-ALPHA)* tempPrev;
+  tempPrev= tempCa;
   if (Serial.availableForWrite()>1){
     Serial.print("Temp:2 ");
     Serial.print(tempC);
@@ -89,7 +113,7 @@ void vReadtemp(void *pvParameters){
  
   //Serial.println("VoltageT: " + String(voltageT) + "V"+"Temperature: " + String(tempC) + "C");
   
-  vTaskDelay(pdMS_TO_TICKS(1000));
+  vTaskDelay(pdMS_TO_TICKS(500));
 }
 }
 void vRcvQueue(void *pvParameters){
@@ -101,17 +125,17 @@ void vRcvQueue(void *pvParameters){
   }
   else{
   float valore=msgR.val;
-  Serial.print(valore);
+  Serial.print("val:"+String(valore));
   Serial.println();
   
   display.setTextSize(1);
-  display.setCursor(0, msgR.line);
-  display.setTextColor(WHITE,BLACK);
-  display.println("         ");
-  display.display();
+  //display.setCursor(0, msgR.line);
+  //display.setTextColor(WHITE,BLACK);
+  //display.println("         ");
+  //display.display();
     display.setCursor(0, msgR.line);
-  display.setTextColor(WHITE);
-  display.println(String(msgR.val) + " "+String(msgR.unit));
+  display.setTextColor(WHITE,BLACK);
+  display.println(String(msgR.val) + " "+String(msgR.unit)+" ");
   display.display();
   }
    }
@@ -129,6 +153,7 @@ void initGPIO(){
    pinMode(LED_BUILTIN, OUTPUT);
    pinMode(PIN_ADC0,INPUT);
    pinMode(PIN_ADC1,INPUT);
+   pinMode(PIN_ADC2,INPUT);
    analogReadResolution(10);
 }
 void initDisplay(){
@@ -164,6 +189,7 @@ xTaskCreate(vBlinkTask, "Blink Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadtemp, "Temp Task", 128, NULL, 1, NULL);
 xTaskCreate(vRcvQueue, "Receive Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadpot, "Pot Task", 128, NULL, 1, NULL);
+xTaskCreate(vReadPhoto, "Lum Task", 128, NULL, 1, NULL);
 //Serial.println("task Create");
 //vTaskStartScheduler();
 
