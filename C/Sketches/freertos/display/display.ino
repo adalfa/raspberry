@@ -4,6 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <hardware/watchdog.h>
 #define PIN_ADC0        26
 #define PIN_ADC1        27
 #define PIN_ADC2        28
@@ -72,6 +73,16 @@ void vReadPhoto(void *pvParameters){
   vTaskDelay(pdMS_TO_TICKS(500));
 }
 }
+void vWatchDog(void *pvParametes){
+  rp2040.wdt_begin(100);
+  
+  for (;;){
+    rp2040.wdt_reset();
+    vTaskDelay(pdMS_TO_TICKS(50));
+
+  }
+}
+
 
 void vReadtemp(void *pvParameters){
 
@@ -184,12 +195,14 @@ void setup ()
 
 
    Serial.println("Step1"+ String(d));  
-
+ 
 xTaskCreate(vBlinkTask, "Blink Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadtemp, "Temp Task", 128, NULL, 1, NULL);
 xTaskCreate(vRcvQueue, "Receive Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadpot, "Pot Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadPhoto, "Lum Task", 128, NULL, 1, NULL);
+xTaskCreate(vWatchDog, "WatchDog Task", 128, NULL, 1, NULL);
+
 //Serial.println("task Create");
 //vTaskStartScheduler();
 
