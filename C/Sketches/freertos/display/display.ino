@@ -5,12 +5,16 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <hardware/watchdog.h>
+#include "DHT.h"
+
 #define configUSE_TRACE_FACILITY                1
 #define configUSE_STATS_FORMATTING_FUNCTIONS    1
 #define PIN_ADC0        26
 #define PIN_ADC1        27
 #define PIN_ADC2        28
 #define GPIO23          23
+#define GPIO22          22
+#define DHTTYPE DHT11 
 #define PIN_LEDB         15
 #define RES           1024.0
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -22,8 +26,10 @@ struct message {
  int line;
  float val;
  char unit;
+ int curs=0;
 
 } ;
+  DHT dht(GPIO22, DHTTYPE);
 
 void vBlinkTask( void * pvParameters) {
 
@@ -51,13 +57,28 @@ void vReadpot(void *pvParameters){
   int adcVal = analogRead(PIN_ADC0);
   float voltage = adcVal / RES * 3.3;
   analogWrite(PIN_LEDB, map(adcVal, 0, RES, 0, 255));
-  msgT.line=0;
+  msgT.line=20;
   msgT.val=voltage;
   msgT.unit='V';
+  msgT.curs=60;
   if (xQueueSend(dispQueue,( void * ) &msgT,10)!= pdPASS){
     Serial.println("send failed");
   }
   vTaskDelay(pdMS_TO_TICKS(1000));
+  }
+}
+
+void vReadDHT(void *pvParameters){
+  for (;;){
+  struct message msgD;
+  msgD.line=0;
+  msgD.unit='C';
+  float t = dht.readTemperature();
+  msgD.val= t;
+  if (xQueueSend(dispQueue,( void * ) &msgD,10)!= pdPASS){
+    Serial.println("send failed");
+  }
+   vTaskDelay(pdMS_TO_TICKS(2000));
   }
 }
 
@@ -149,7 +170,7 @@ void vRcvQueue(void *pvParameters){
   //display.setTextColor(WHITE,BLACK);
   //display.println("         ");
   //display.display();
-    display.setCursor(0, msgR.line);
+    display.setCursor(msgR.curs, msgR.line);
   display.setTextColor(WHITE,BLACK);
   display.println(String(msgR.val) + " "+String(msgR.unit)+" ");
   display.display();
@@ -157,9 +178,7 @@ void vRcvQueue(void *pvParameters){
    }
 }
 
-void vTaskListF(void *pvParameters){
-  
-}
+
 
 void initdbg() {
  Serial.begin(115200);
@@ -174,6 +193,7 @@ void initGPIO(){
    pinMode(PIN_ADC0,INPUT);
    pinMode(PIN_ADC1,INPUT);
    pinMode(PIN_ADC2,INPUT);
+   
    analogReadResolution(10);
 }
 void initDisplay(){
@@ -191,13 +211,17 @@ display.invertDisplay(false);
   display.println("Init");
   display.display();
 }
+void initDHT(){
 
+dht.begin();
+}
 
 void setup ()
 {
    initdbg();
    initGPIO();
    initDisplay();
+   initDHT();
    float d=1.0;
    
    dispQueue=xQueueCreate(10,sizeof( struct message ));
@@ -224,7 +248,36 @@ xTaskCreate(vWatchDog, "WatchDog Task", 128, NULL, 1, NULL);
 
 void loop() {
 
- 
+ delay(2000);
+
+  // Reading temperature or humidity takes about 250 milliseconds!
+  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+  float h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  //float f = dht.readTemperature(true);
+   Serial.print(F("Humidity: "));
+  Serial.print(h);
+  
+  struct message msgD;
+  struct message msgH;
+  Serial.print(F("%  Temperature: "));
+  Serial.print(t);
+  msgD.line=0;
+  msgD.unit='C';
+  msgH.line=0;
+  msgH.curs=60;
+  msgH.unit='%';
+  msgH.val= h;
+  msgD.val= t;
+  if (xQueueSend(dispQueue,( void * ) &msgD,10)!= pdPASS){
+    Serial.println("send failed");
+  }
+   if (xQueueSend(dispQueue,( void * ) &msgH,10)!= pdPASS){
+    Serial.println("send failed");
+  }
+  //Serial.print(F("°C "));
 
   // 
 
