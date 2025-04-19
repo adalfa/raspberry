@@ -5,6 +5,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <hardware/watchdog.h>
+#define configUSE_TRACE_FACILITY                1
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1
 #define PIN_ADC0        26
 #define PIN_ADC1        27
 #define PIN_ADC2        28
@@ -34,8 +36,11 @@ void vBlinkTask( void * pvParameters) {
   // for(long i=1;i<100000000;i++);
       digitalWrite(LED_BUILTIN, LOW);
     Serial.println("Low");
+   
    vTaskDelay(pdMS_TO_TICKS(1000));
+   
   // for(long i=1;i<100000000;i++);
+
    }
 
 }
@@ -152,6 +157,10 @@ void vRcvQueue(void *pvParameters){
    }
 }
 
+void vTaskListF(void *pvParameters){
+  
+}
+
 void initdbg() {
  Serial.begin(115200);
  // vTaskDelay(1000/portTICK_RATE_MS);
@@ -203,6 +212,11 @@ xTaskCreate(vReadpot, "Pot Task", 128, NULL, 1, NULL);
 xTaskCreate(vReadPhoto, "Lum Task", 128, NULL, 1, NULL);
 xTaskCreate(vWatchDog, "WatchDog Task", 128, NULL, 1, NULL);
 
+  char pcWriteBuffer[2048];
+   vTaskList(pcWriteBuffer);
+    if (Serial.availableForWrite()>1)
+   Serial.printf("%s\n",pcWriteBuffer);
+//xTaskCreate(vTaskListF, "Top Task", 128, NULL, 1, NULL);
 //Serial.println("task Create");
 //vTaskStartScheduler();
 
@@ -210,8 +224,7 @@ xTaskCreate(vWatchDog, "WatchDog Task", 128, NULL, 1, NULL);
 
 void loop() {
 
-    
-
+ 
 
   // 
 
