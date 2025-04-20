@@ -310,8 +310,7 @@ void loop1() {
   //delay(2000);
   float h = 10;
   float t = 20;
- do
-  {
+  do {
     vTaskDelay(pdMS_TO_TICKS(2000));
     if (SERIAL_DEBUG && Serial.availableForWrite() > 1)
       Serial.println("read");
@@ -323,12 +322,11 @@ void loop1() {
 
 
     t = dht.readTemperature();
-  }
-  while (h == NAN || t == NAN);
-    // Read temperature as Fahrenheit (isFahrenheit = true)
-    //float f = dht.readTemperature(true);
-    if (SERIAL_DEBUG && Serial.availableForWrite() > 1)
-      Serial.println("read OK");
+  } while (h == NAN || t == NAN);
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  //float f = dht.readTemperature(true);
+  if (SERIAL_DEBUG && Serial.availableForWrite() > 1)
+    Serial.println("read OK");
 
   struct message msgD;
   struct message msgH;
