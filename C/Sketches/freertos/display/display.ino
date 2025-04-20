@@ -9,7 +9,7 @@
 
 #define configUSE_TRACE_FACILITY 1
 #define configUSE_STATS_FORMATTING_FUNCTIONS 1
-#define SERIAL_DEBUG 0
+#define SERIAL_DEBUG 1
 #define PIN_ADC0 26
 #define PIN_ADC1 27
 #define PIN_ADC2 28
@@ -310,7 +310,7 @@ void loop1() {
   //delay(2000);
   float h = 10;
   float t = 20;
-
+ do
   {
     vTaskDelay(pdMS_TO_TICKS(2000));
     if (SERIAL_DEBUG && Serial.availableForWrite() > 1)
@@ -324,7 +324,7 @@ void loop1() {
 
     t = dht.readTemperature();
   }
-  while (h == NAN || t == NAN)
+  while (h == NAN || t == NAN);
     // Read temperature as Fahrenheit (isFahrenheit = true)
     //float f = dht.readTemperature(true);
     if (SERIAL_DEBUG && Serial.availableForWrite() > 1)
