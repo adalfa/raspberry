@@ -59,6 +59,8 @@ void vReadpot(void *pvParameters) {
   for (;;) {
     struct message msgT;
     int adcVal = analogRead(PIN_ADC0);
+    adcVal &= ~(1 );
+    
     float voltage = adcVal / RES * 3.3;
     analogWrite(PIN_LEDB, map(adcVal, 0, RES, 0, 255));
     msgT.line = 20;
@@ -69,7 +71,7 @@ void vReadpot(void *pvParameters) {
       if (SERIAL_DEBUG)
         Serial.println("send failed");
     }
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    vTaskDelay(pdMS_TO_TICKS(100));
   }
 }
 

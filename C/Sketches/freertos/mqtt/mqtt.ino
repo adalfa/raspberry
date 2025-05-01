@@ -23,11 +23,11 @@
  * To properly connect to your Azure IoT Hub, please fill the information in the `iot_configs.h`
  * file.
  */
-#include <FreeRTOS.h>
-#include <task.h>
+//#include <FreeRTOS.h>
+//#include <task.h>
 
 
-#include <semphr.h>
+//#include <semphr.h>
 #include <SimpleMDNS.h>
 // C99 libraries
 #include <cstdlib>
@@ -261,6 +261,8 @@ static int connectToAzureIoTHub()
 
   Serial.print("Username: ");
   Serial.println(mqtt_username);
+  Serial.print("SAS: ");
+  Serial.println(sas_token);
 
   mqtt_client.setBufferSize(MQTT_PACKET_SIZE);
  
@@ -291,11 +293,12 @@ static int connectToAzureIoTHub()
 
   return 0;
 }
-
+/*
 void vSetupTask(void *pvParameters) {
   sema_MQTT_KeepAlive   = xSemaphoreCreateBinary();
   xSemaphoreGive( sema_MQTT_KeepAlive );
   mqtt_client.setKeepAlive(90);
+ 
  for (;;)
   {
   if ( (wifi_client.connected()==0) && (WiFi.status() == WL_CONNECTED) )
@@ -307,7 +310,9 @@ void vSetupTask(void *pvParameters) {
   else
   if ( (wifi_client.connected()!=0) || (WiFi.status() != WL_CONNECTED) )
    {
+        
         connectToWiFi();
+        Serial.printf("CA %s\n",ca_pem);
         initializeTime();
         printCurrentTime();
         initializeClients();
@@ -329,10 +334,11 @@ void vSetupTask(void *pvParameters) {
    }
 }
 }
-
+*/
 static void establishConnection()
 {
   connectToWiFi();
+  Serial.printf("CA %s\n",ca_pem);
   initializeTime();
   printCurrentTime();
   initializeClients();
@@ -389,14 +395,15 @@ void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
-   xTaskCreate(vSetupTask, "setup Task", 1024, NULL, 1, NULL);
-
+  
+   //xTaskCreate(vSetupTask, "setup Task", 1024, NULL, 1, NULL);
+establishConnection();
   digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop()
 {
-  /*
+  
   if (millis() > next_telemetry_send_time_ms)
   {
     // Check if connected, reconnect if needed.
@@ -412,5 +419,5 @@ void loop()
   // MQTT loop must be called to process Device-to-Cloud and Cloud-to-Device.
   mqtt_client.loop();
   delay(500);
-  */
+  
 }
