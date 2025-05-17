@@ -1,0 +1,9 @@
+2:35:39.921 -> =========== IMU Identifier ===========
+
+12:35:39.921 -> IMU Found: MPU6500 On address: 0x68
+
+12:35:39.921 -> This IMU is capable of the following axis: 3A,3G
+
+12:35:39.921 -> This IMU is supported by the FastIMU library.
+
+12:35:39.921 -> ======================================
