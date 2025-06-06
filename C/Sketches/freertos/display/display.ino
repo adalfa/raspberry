@@ -13,8 +13,10 @@
 #define PIN_ADC0 26
 #define PIN_ADC1 27
 #define PIN_ADC2 28
+#define PIN_ADC3 29
 #define GPIO23 23
 #define GPIO22 22
+#define GPIO29 29
 #define DHTTYPE DHT11
 #define PIN_LEDB 15
 #define RES 1024.0
@@ -156,6 +158,7 @@ void vReadtemp(void *pvParameters) {
 
   for (;;) {
     struct message msgT;
+    struct message msgB;
     //vTaskDelay(pdMS_TO_TICKS(1000));
     int adcValueTemp = analogRead(PIN_ADC1);
 
@@ -194,7 +197,20 @@ void vReadtemp(void *pvParameters) {
     }
 
     //Serial.println("VoltageT: " + String(voltageT) + "V"+"Temperature: " + String(tempC) + "C");
-
+    digitalWrite(GPIO29, HIGH);
+    int adcValueSys = analogRead(PIN_ADC3);
+    adcValueSys= adcValueSys;//*9875 / (1 << 12) - 20;
+    digitalWrite(GPIO29, LOW);
+    msgB.line = 10;
+    msgB.curs= 60;
+    msgB.val=adcValueSys;
+    msgB.unit='V';
+    // if (SERIAL_DEBUG)
+    //       Serial.printf("vsys: %d",adcValueSys);
+    if (xQueueSend(dispQueue, (void *)&msgB, 10) != pdPASS) {
+      if (SERIAL_DEBUG)
+        Serial.println("send failed");
+    }
     vTaskDelay(pdMS_TO_TICKS(500));
   }
 }
@@ -244,6 +260,8 @@ void initGPIO() {
   pinMode(PIN_ADC0, INPUT);
   pinMode(PIN_ADC1, INPUT);
   pinMode(PIN_ADC2, INPUT);
+  pinMode(PIN_ADC3, INPUT);
+  pinMode(GPIO29, OUTPUT);
 
   analogReadResolution(10);
 }
